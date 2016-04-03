@@ -18,7 +18,7 @@ class Population(object):
         
         return self.population.__iter__()
         
-    def extend(self, new_individuals, Topology=None):
+    def extend(self, new_individuals):
         """Creates new population that consists of
         old individuals ans new_individuals"""
         

@@ -20,6 +20,7 @@ class NSGA2Utils(object):
         for individual in population:
             individual.domination_count = 0
             individual.dominated_solutions = set()
+            
             for other_individual in population:
                 if individual.dominates(other_individual):
                     individual.dominated_solutions.add(other_individual)
@@ -69,6 +70,7 @@ class NSGA2Utils(object):
             individual = self.problem.generateIndividual()
             self.problem.calculate_objectives(individual)
             population.population.append(individual)
+            
         return population
     
     def create_children(self, population):
@@ -85,6 +87,7 @@ class NSGA2Utils(object):
             self.problem.calculate_objectives(child2)
             children.append(child1)
             children.append(child2)
+
         return children
     
     def __crossover(self, individual1, individual2):
@@ -116,4 +119,5 @@ class NSGA2Utils(object):
         for participant in participants:
             if best is None or self.crowding_operator(participant, best) == 1:
                 best = participant
+
         return best

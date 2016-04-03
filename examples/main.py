@@ -1,7 +1,7 @@
 from metrics.problems.zdt import ZDT3Metrics
 from nsga2.evolution import Evolution
-from nsga2.problems.zdt import ZDT
-from nsga2.problems.zdt.zdt3_definitions import ZDT3Definitions
+from nsga2.problems.urban import Urban
+from nsga2.problems.urban.zdt3_definitions import ZDT3Definitions
 from plotter import Plotter
 
 def print_generation(population, generation_num):
@@ -25,12 +25,11 @@ def collect_metrics(population, generation_num):
 
 zdt_definitions = ZDT3Definitions()
 plotter = Plotter(zdt_definitions)
-problem = ZDT(zdt_definitions)
-evolution = Evolution(problem, 200, 200)
+problem = Urban(zdt_definitions)
+evolution = Evolution(problem, 20, 200)
 evolution.register_on_new_generation(plotter.plot_population_best_front)
 evolution.register_on_new_generation(print_generation)
 evolution.register_on_new_generation(print_metrics)
 evolution.register_on_new_generation(collect_metrics)
 pareto_front = evolution.evolve()
-
 plotter.plot_x_y(collected_metrics.keys(), map(lambda (hv, hvr): hvr, collected_metrics.values()), 'generation', 'HVR', 'HVR metric for ZDT3 problem', 'hvr-zdt3')

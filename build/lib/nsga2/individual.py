@@ -11,7 +11,6 @@ class Individual(object):
         self.features = None
         self.objectives = None
         self.dominates = None
-        self.topology = None
         
     def set_objectives(self, objectives):
         self.objectives = objectives
